@@ -40,6 +40,11 @@
         });
     }
 
+    function printVoucherList2() {
+        var namavoucher = $('[name="namavoucher"]').val();
+        window.open("<?php echo base_url('voucher/cetak_voucher_list2'); ?>/" + namavoucher, "_blank");
+    }
+
     function deleteVoucherList() {
 
         konfirmasi = confirm('Apa kamu yakin ingin menghapus VOUCHER ini (semua user pada VOUCHER tersebut akan dihapus)?');
@@ -85,7 +90,7 @@
                 ?>
             </select>
         </div>
-        <button type="button" class="btn btn-info" onclick='window.open("<?php echo base_url('voucher/cetak_voucher_list2') . '/' . $name; ?>", "_blank")'>CETAK</button>
+        <button type="button" class="btn btn-info" onclick='printVoucherList2()'>CETAK</button>
         <button type="button" class="btn btn-danger" onclick="deleteVoucherList()">HAPUS</button>
     </form>
     <div class="table-responsive" id="div_voucher_list">
