@@ -153,14 +153,12 @@ class Mikrostator Extends routeros_api {
                 $name = $data['user'];
                 $password = $data['password'];
                 $userprofile = $data['userprofile'];
-                $server = $data['server'];
 
                 $this->write('/ip/hotspot/user/set', false);
                 $this->write('=.id=' . $name, false);
                 $this->write('=name=' . $name, false);
                 $this->write('=password=' . $password, false);
-                $this->write('=profile=' . $userprofile, false);
-                $this->write('=server=' . $server);
+                $this->write('=profile=' . $userprofile);
                 $READ = $this->read(false);
                 //$ARRAY = $this->parse_response($READ);
                 return $READ;
