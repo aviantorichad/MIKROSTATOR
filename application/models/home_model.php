@@ -657,7 +657,7 @@ class Home_model extends CI_Model {
                         }
                         $this->log->writeLog($msg);
                         return $msg;
-                        break;
+                        //break;
                     }
                 }
 
