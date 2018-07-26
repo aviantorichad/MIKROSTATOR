@@ -1,1 +1,315 @@
-kula robot :)
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+        <meta name="description" content="MIKROSTATOR - Mikrotik Administrator -
+            Simple Billing Mikrotik">
+        <meta name="author" content="@aviantorichad">
+        <link rel="icon" href="favicon.png">
+
+        <title>MIKROSTATOR</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+            integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+            crossorigin="anonymous">
+
+
+        <!-- Custom styles for this template -->
+        <style>
+        /* Move down content because we have a fixed navbar that is 3.5rem tall */
+        body {
+            padding-top: 3.5rem;
+        }
+
+        .jumbotron {
+            border-radius: 0;
+        }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">/// MIKROSTATOR</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarsMenus"
+                aria-controls="navbarsMenus" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsMenus">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html"><i class="fa
+                                fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="http://mikrostator.aviantorichad.com"><i
+                                class="fa fa-globe"></i> Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="http://facebook.com/groups/mikrostator.dev/"><i
+                                class="fa fa-comments"></i> Forum</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                            href="http://example.com" id="dropdown01"
+                            data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fa
+                                fa-arrow-circle-down"></i> Sosmed</a>
+                        <div class="dropdown-menu dropdown-menu-right"
+                            aria-labelledby="dropdown01">
+                            <a class="dropdown-item"
+                                href="http://facebook.com/mikrostator"
+                                target="_blank"><i class="fa
+                                    fa-arrow-circle-right"></i> Facebook Page</a>
+                            <a class="dropdown-item"
+                                href="http://facebook.com/groups/mikrostator.dev/"
+                                target="_blank"><i class="fa
+                                    fa-arrow-circle-right"></i> Facebook Group</a>
+                            <a class="dropdown-item"
+                                href="http://instagram.com/mikrostator"
+                                target="_blank"><i class="fa
+                                    fa-arrow-circle-right"></i> Instagram</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main">
+
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="jumbotron bg-dark text-light">
+                <div class="container">
+                    <h1>MIKROSTATOR</h1>
+                    <p>
+                        Aplikasi yang digunakan untuk manajemen <i>hotspot</i>
+                        pada Router Mikrotik,
+                        alternatif menarik bagi Router yang tidak <i>support</i>
+                        atau tidak bisa dipasang <b>User Manager</b>.
+                    </p>
+                    <p>
+                        Anda bisa memantau banyak router sekaligus dalam satu
+                        halaman, generate voucher,
+                        menambahkan batas pemakaian (limit-uptime) menggunakan
+                        nominal uang,
+                        transfer menit pemakaian (limit-uptime) antar <i>user</i>
+                        dan lihat hasil penjualan pada laporan penjualan.
+                    </p>
+                    <p>
+                        <a class="btn btn-success btn-lg mb-2"
+                            href="http://github.com/aviantorichad/MIKROSTATOR/archive/master.zip"
+                            role="button"><i
+                                class="fa fa-download"></i> Download V1</a>
+
+                        <a class="btn btn-secondary btn-lg mb-2"
+                            href="http://github.com/aviantorichad/MIKROSTATOR"
+                            role="button"><i
+                                class="fab fa-github"></i> View on Github</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="images/multi-router.png" target="_blank"><img
+                                src="images/multi-router.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Monitor More Router</h2>
+                        <p>
+                            Pantau semua Router Mikrotik anda dalam satu halaman
+                            tanpa harus bolak balik
+                            berpindah halaman. Manfaatkan fitur 'Quick Connect'
+                            jika anda tidak ingin informasi login
+                            Router Mikrotik anda atau manfaatkan PIN Security
+                            jika anda ingin menyimpannya ke DB MIKROSTATOR.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/generate-voucher.png" target="_blank"><img
+                                src="images/generate-voucher.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Generate Voucher</h2>
+                        <p>
+                            Buat voucher sebanyak-banyaknya, desain sendiri
+                            voucher anda dengan template editor dan nikmati
+                            hasil penjualannya setiap
+                            pelanggan anda memakai voucher tersebut.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/simple-billing.png" target="_blank"><img
+                                src="images/simple-billing.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Simple Billing</h2>
+                        <p>
+                            Tambahkan batas waktu pemakaian hotspot pelanggan
+                            anda dengan fitur billing pada MIKROSTATOR yang
+                            memungkinkan anda menambahkannya sesuai harga perjam
+                            layanan hotspot anda.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="images/selling-report.png" target="_blank"><img
+                                src="images/selling-report.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Selling Report</h2>
+                        <p>
+                            Pantau hasil penjualan voucher dan billing anda
+                            setiap waktu. Laporan
+                            bisa anda <i>Download</i> dan rekap sebagai dokumen
+                            pribadi anda.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/realtime-monitor.png" target="_blank"><img
+                                src="images/realtime-monitor.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Realtime Monitor</h2>
+                        <p>
+                            Manfaatkan fitur 'Auto Refresh' untuk memonitor
+                            router anda dengan waktu yang anda bisa setel sesuai
+                            keinginan anda.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="images/mikrostator-mobile.png" target="_blank"><img
+                                src="images/mikrostator-mobile.png"
+                                class="card-img-top mb-3" /></a>
+                        <h2>Pantau Dimana Saja</h2>
+                        <p>
+                            MIKROSTATOR bisa dipasang di layanan <i>hosting</i>
+                            dan sudah teruji berjalan
+                            normal dan lancar. Bahkan anda bisa memasangnya di
+                            Android menggunakan aplikasi
+                            <i>web server</i> PHP (teruji menggunakan aplikasi
+                            Penguin sebagai web servernya).
+                        </p>
+                    </div>
+                </div>
+
+                <hr>
+
+            </div> <!-- /container -->
+
+
+            <div class="jumbotron bg-dark text-light" style="margin-bottom: 0;">
+                <div class="container text-light">
+                    <!-- Example row of columns -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h2>Tutorial:</h2>
+                            <p>
+                                <small class="text-warning"><i class="fa fa-info-circle"></i> For what? MIKROSTATOR is easy to use, lur :)</small>
+                            </p>
+                            <p>Kalau anda ingin menginginkan dokumentasi bisa merujuk pada link di bawah ini:</p>
+                            <ul>
+                                <li>Dokumentasi: <a href="https://docs.google.com/document/d/1ihWNqwuzciASInvw3-L8C0nablcYSqJcCa3b7cHMPoc/edit?usp=sharing" target="_blank" class="text-info">doc gdrive</a></li>
+                                <li>Youtube: <a href="https://www.youtube.com/channel/UC7m5tO_L4DZnxR4mG2O242A" target="_blank" class="text-info">aviantorichad</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Q & A ?</h2>
+                            <p>Will be updated soon...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jumbotron bg-secondary text-light">
+                <div class="container text-light">
+                    <!-- Example row of columns -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h2>Are you happy?</h2>
+                            <p>Please give me a cup of coffee :)</p>
+                            <hr>
+                            <p>Hello sedulur, jika anda merasa MIKROSTATOR
+                                berguna, kami membuka donasi untuk membantu
+                                MIKROSTATOR berkembang</p>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-dark">
+                                <div class="card-header">
+                                    <h5>Donasi via Paypal</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Klik tombol di bawah untuk melakukan donasi via paypal</p>
+                                    <form
+                                        action="https://www.paypal.com/cgi-bin/webscr"
+                                        method="post" target="_top">
+                                        <input type="hidden" name="cmd"
+                                            value="_s-xclick" />
+                                        <input type="hidden"
+                                            name="hosted_button_id"
+                                            value="EK6UWF45PVDR6" />
+                                        <input type="image"
+                                            src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+                                            border="0" name="submit" alt="PayPal
+                                            - The
+                                            safer, easier way to pay online!" />
+                                        <img alt="" border="0"
+                                            src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif"
+                                            width="1" height="1" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-dark">
+                                <div class="card-header">
+                                    <h5>Donasi via Transfer BANK</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>Anda bisa mengirimkan donasi melalui BANK di bawah ini:</p>
+                                    <p>BANK: <b>BCA</b></p>
+                                    <p>No. Rek.: <b>8715-9843-81</b></p>
+                                    <p>a/n: <b>Richad Avianto</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="container">
+            <p>&copy; MIKROSTATOR 2015-2018</p>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
