@@ -11,14 +11,15 @@ MIKROSTATOR versi beta (Senin, 16 Mei 2016):
 
 
 ## Komposisi:
-Mikrotik API PHP class (Denis Basta)
-Bootstrap
-PHP Framework CodeIgniter-2.2-stable
-Mysql
-Jquery
-Fitur:
+- Mikrotik API PHP class (Denis Basta)
+- Bootstrap
+- PHP Framework CodeIgniter-2.2-stable
+- Mysql
+- Jquery
 
-## Tambah Jam
+## Fitur:
+
+### Tambah Jam
 
 - Transfer Menit
 - Real time user online (sesuai interval)
