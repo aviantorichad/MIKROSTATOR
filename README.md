@@ -1,4 +1,4 @@
-# MIKROSTATOR V1
+# MIKROSTATOR
 - MIKROSTATOR - Mikrotik Administrator
 
 ## DONATE
