@@ -363,7 +363,7 @@
 
                             <h4>License</h4>
                                 <ul>
-                                    <li>GNU General Public License version 2 or later</li>
+                                    <li>MIT</li>
                                 </ul>
                             <hr>
 

@@ -27,7 +27,7 @@ You can monitor multiple routers on a single page, generate vouchers, add a usag
 - Penguin Web Server on Android
 
 ## License
-- GNU General Public License version 2 or later
+- MIT
 
 ## DONATE
 If this project make you happy, you can give me a cup of coffee :)
