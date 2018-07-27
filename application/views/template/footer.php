@@ -1,7 +1,7 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0.0
+        <b>Version</b> 1.0.1
     </div>
     <strong>Copyright &copy; 2018 <a href="javascript:void(0)">MIKROSTATOR</a>.</strong> All rights reserved.
 </footer>
@@ -23,6 +23,7 @@
 <script src="<?= base_url('assets/js/dashboard.js') ?>"></script>
 <!-- DataTables -->
 <script src="<?= base_url('assets/js/jquery.dataTables.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/jquery.slimscroll.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/dataTables.bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/dataTables.responsive.js') ?>"></script>
 <script src="<?= base_url('assets/js/dataTables.buttons.min.js') ?>"></script>
