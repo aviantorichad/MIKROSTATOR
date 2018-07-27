@@ -172,6 +172,7 @@ class Home extends MY_Controller {
     
     public function get_session_lists() {
         $this->load->database();
+        $this->db->select('id, mikrotik_name');
         $query = $this->db->get('login_mikrotik');
         $array = $query->result();
         if (count($array) > 0) {
