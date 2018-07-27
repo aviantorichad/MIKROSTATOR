@@ -135,7 +135,7 @@
                         <i class="fa fa-book"></i>
 
                         <h3 class="box-title">
-                            Left Side
+                            Center Side
                         </h3>
                         <!-- tools box -->
                         <div class="box-tools pull-right">
