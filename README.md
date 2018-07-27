@@ -1,5 +1,10 @@
 # MIKROSTATOR v1
 MIKROSTATOR - Mikrotik Administrator
+```
+Aplikasi yang digunakan untuk manajemen hotspot pada Router Mikrotik, alternatif menarik bagi Router yang tidak support atau tidak bisa dipasang User Manager.
+
+Anda bisa memantau banyak router sekaligus dalam satu halaman, generate voucher, menambahkan batas pemakaian (limit-uptime) menggunakan nominal uang, transfer menit pemakaian (limit-uptime) antar user dan lihat hasil penjualan pada laporan penjualan.
+```
 
 ## Requirement
 - PHP 5.6 or newer
