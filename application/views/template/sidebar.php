@@ -338,7 +338,6 @@
                                 <li>Bootstrap 3.3.7</li>
                                 <li>AdminLTE v2.4.0</li>
                                 <li>jQuery v3.2.1</li>
-                                <li>SQLite</li>
                             </ul>
                             <hr>
 
