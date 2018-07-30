@@ -199,7 +199,8 @@
         $('#reload-session-list').on('click', function () {
             $('#help-session-list').html('loading...');
             reqAjax = $.ajax({
-                url: "<?= site_url('home/get_session_logins') ?>",
+                // url: "<?= site_url('home/get_session_logins') ?>",
+                url: "<?= site_url('home/get_session_logins_from_file') ?>",
                 type: 'POST',
                 success: function (data) {
                     var obj = JSON.parse(data);
@@ -238,7 +239,7 @@
                 return false;
             }
             reqAjax = $.ajax({
-                url: "<?= site_url('home/is_security_mikrotik') ?>",
+                url: "<?= site_url('home/is_security_mikrotik_from_file') ?>",
                 type: 'POST',
                 data: {'id': $('#session-list').val()},
                 success: function (data) {
@@ -266,7 +267,7 @@
 
                         if (pin != null || pin != "" || typeof pin != 'undefined') {
                             reqAjax = $.ajax({
-                                url: "<?= site_url('home/check_security_mikrotik') ?>",
+                                url: "<?= site_url('home/check_security_mikrotik_from_file') ?>",
                                 type: 'POST',
                                 data: {
                                     'id': $('#session-list').val(),
@@ -310,7 +311,7 @@
         
         function useSession() {
             reqAjax = $.ajax({
-                url: "<?= site_url('home/get_session_login_by_id') ?>",
+                url: "<?= site_url('home/get_session_login_by_id_from_file') ?>",
                 type: 'POST',
                 data: {'id': $('#session-list').val()},
                 success: function (data) {
@@ -341,7 +342,7 @@
             }
             if (confirm('Are you sure?')) {
                 reqAjax = $.ajax({
-                    url: "<?= site_url('home/del_session_list_by_id') ?>",
+                    url: "<?= site_url('home/del_session_list_by_id_from_file') ?>",
                     type: 'POST',
                     data: {'id': $('#session-list').val()},
                     success: function (data) {
@@ -403,7 +404,7 @@
                 "security_pin": $('#security-pin').val()
             }
             reqAjax = $.ajax({
-                url: "<?= site_url('home/save_session') ?>",
+                url: "<?= site_url('home/save_session_to_file') ?>",
                 type: 'POST',
                 data: formData,
                 success: function (data) {
