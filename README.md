@@ -17,7 +17,16 @@ You can monitor multiple routers on a single page, generate vouchers, add a usag
 - Bootstrap 3.3.7
 - AdminLTE v2.4.0
 - jQuery v3.2.1
-- SQLite
+- ~~SQLite~~ change to __JSON File__
+
+## How to install
+- Download this master file in [here](http://aviantorichad.github.com/MIKROSTATOR)
+- Extract and copy paste to your public html folder (ex: htdocs, www, etc)
+- or if you have PHP try this using __Terminal__ or __CMD__ in your extracted folder: 
+```
+php -S localhost:8000
+```
+-- Access from your browser like this: **localhost:8000**
 
 ## Testing Tools
 - PHP 7.2.7-1+ubuntu16.04.1+deb.sury.org+1
