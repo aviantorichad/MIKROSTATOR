@@ -2202,7 +2202,8 @@ class Mt_ip extends MY_Controller {
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab_1_hotspot_user_profile-<?=$session_id?>" data-toggle="tab">Required</a></li>
-                    <li><a href="#tab_2_hotspot_user_profile-<?=$session_id?>" data-toggle="tab">Advanced</a></li>
+                    <li><a href="#tab_2_hotspot_user_profile-<?=$session_id?>" data-toggle="tab">Validity</a></li>
+                    <li><a href="#tab_3_hotspot_user_profile-<?=$session_id?>" data-toggle="tab">Advanced</a></li>
                     <!-- <li><a href="#tab_3" data-toggle="tab">Scripts</a></li> -->
                 </ul>
                 <div class="tab-content">
@@ -2233,21 +2234,6 @@ class Mt_ip extends MY_Controller {
                                 <input type="text" class="form-control" id="hotspot-user-profile-rate-limit" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['rate-limit']) ? $list_user_profile['rate-limit'] : '' ?>">
                                 <small class="help-block" id="help-session-list">example : 512k/1M</small>
                             </div>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label">Open Status Page:</label>
-                                <select class="form-control" id="hotspot-user-profile-open-status-page">
-                                    <option value="always" <?= isset($list_user_profile['open-status-page']) ? 'always' == $list_user_profile['open-status-page'] ? 'selected' : '' : '' ?>>Always</option>
-                                    <option value="http-login" <?= isset($list_user_profile['open-status-page']) ? 'http-login' == $list_user_profile['open-status-page'] ? 'selected' : '' : '' ?>>HTTP Login</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Transparent Proxy:</label>
-                                <select class="form-control" id="hotspot-user-profile-transparent-proxy">
-                                    <option value="yes" <?= isset($list_user_profile['transparent-proxy']) ? 'true' == $list_user_profile['transparent-proxy'] ? 'selected' : '' : '' ?>>Yes</option>
-                                    <option value="no" <?= isset($list_user_profile['transparent-proxy']) ? 'false' == $list_user_profile['transparent-proxy'] ? 'selected' : '' : '' ?>>No</option>
-                                </select>
-                            </div>
                         </form>
                     </div>
                     <!-- /.tab-pane -->
@@ -2262,6 +2248,25 @@ class Mt_ip extends MY_Controller {
                                 <label class="control-label">Price:</label>
                                 <input type="number" class="form-control" id="hotspot-user-profile-price" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['on-login']) ? $this->rich_model->parse_validity($list_user_profile['on-login'], 'price') : '' ?>" min="0">
                                 <small class="help-block" id="help-session-list">example : 50000</small>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_3_hotspot_user_profile-<?=$session_id?>">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Open Status Page:</label>
+                                <select class="form-control" id="hotspot-user-profile-open-status-page">
+                                    <option value="always" <?= isset($list_user_profile['open-status-page']) ? 'always' == $list_user_profile['open-status-page'] ? 'selected' : '' : '' ?>>Always</option>
+                                    <option value="http-login" <?= isset($list_user_profile['open-status-page']) ? 'http-login' == $list_user_profile['open-status-page'] ? 'selected' : '' : '' ?>>HTTP Login</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Transparent Proxy:</label>
+                                <select class="form-control" id="hotspot-user-profile-transparent-proxy">
+                                    <option value="yes" <?= isset($list_user_profile['transparent-proxy']) ? 'true' == $list_user_profile['transparent-proxy'] ? 'selected' : '' : '' ?>>Yes</option>
+                                    <option value="no" <?= isset($list_user_profile['transparent-proxy']) ? 'false' == $list_user_profile['transparent-proxy'] ? 'selected' : '' : '' ?>>No</option>
+                                </select>
                             </div>
                         </form>
                     </div>

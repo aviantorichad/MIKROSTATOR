@@ -129,6 +129,11 @@
             addSection(menuName, 'menu-voucher-list');
         });
 
+        $('#menu-voucher-profile').on('click', function () {
+            var menuName = $(this).text();
+            addSection(menuName, 'menu-hotspot-user-profile');
+        });
+
         $('#menu-dns-cache').on('click', function () {
             var menuName = $(this).text();
             addSection(menuName, 'menu-dns-cache');
