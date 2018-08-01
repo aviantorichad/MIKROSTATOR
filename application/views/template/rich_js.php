@@ -566,7 +566,11 @@
                                 alert('Session not found!\nRefresh your browser now!');
                                 return false;
                             }
-                            $('#mikrostator-section').prepend(data);
+                            if($('#app_multiview').prop('checked')){
+                                $('#mikrostator-section').prepend(data);
+                            } else {
+                                $('#mikrostator-section').html(data);
+                            }
                             $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-header h3').html(menuName);
                             $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-header small').html(itemText);
                             runCmdMikrotik(itemValue, cmd);
