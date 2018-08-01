@@ -1122,7 +1122,7 @@ class Mt_voucher extends MY_Controller {
                 $('#reload_voucher_template_list').on('click', function () {
                     $('#reload_voucher_template_list i').addClass('fa-spin');
                     reqAjax = $.ajax({
-                        url: "<?= site_url('mt_voucher/get_voucher_template') ?>",
+                        url: "<?= site_url('mt_voucher/get_voucher_template_from_file') ?>",
                         type: 'POST',
                         success: function (data) {
                             var obj = JSON.parse(data);
@@ -1166,7 +1166,7 @@ class Mt_voucher extends MY_Controller {
                         // "template_value": Base64.encode($('#template-editor').val())
                     }
                     reqAjax = $.ajax({
-                        url: "<?= site_url('mt_voucher/save_template') ?>",
+                        url: "<?= site_url('mt_voucher/save_template_to_file') ?>",
                         type: 'POST',
                         data: formData,
                         success: function (data) {
@@ -1193,7 +1193,7 @@ class Mt_voucher extends MY_Controller {
                     }
 
                     $.ajax({
-                        url: "<?= site_url('mt_voucher/get_voucher_template_by_id') ?>",
+                        url: "<?= site_url('mt_voucher/get_voucher_template_by_id_from_file') ?>",
                         type: 'POST',
                         data: {'id': $('#voucher_template_list').val()},
                         success: function (data) {
@@ -1218,7 +1218,7 @@ class Mt_voucher extends MY_Controller {
                     }
 
                     $.ajax({
-                        url: "<?= site_url('mt_voucher/del_voucher_template_by_id') ?>",
+                        url: "<?= site_url('mt_voucher/del_voucher_template_by_id_from_file') ?>",
                         type: 'POST',
                         data: {'id': $('#voucher_template_list').val()},
                         success: function (data) {
@@ -1333,7 +1333,7 @@ class Mt_voucher extends MY_Controller {
         }
     }
 
-
+    //from database.begin
     public function save_template() {
         $this->load->database();
         $data['name'] = $this->input->post('template_name');
@@ -1398,5 +1398,111 @@ class Mt_voucher extends MY_Controller {
         }
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
+    //from database.end
+
+    //from  file.begin
+    private function mikrostator_template_file_db() {
+        // return "./db/login_mikrotik.json";
+        return "./system/database/voucher_template.json";
+    }
+    public function get_voucher_template_from_file() {
+        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            $array = [];
+            foreach($myfile as $key => $val) {
+                $arr['id'] = $key;
+                $arr['name'] = $val['name'];
+                $arr['value'] = $val['value'];
+                array_push($array, $arr);
+            }
+
+            if(count($array) > 0){
+                $result['ok'] = true;
+                $result['msg'] = $array;
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = "no data";
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
+    public function get_voucher_template_by_id_from_file() {
+        $id = $this->input->post('id');
+
+        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            $myfile = $myfile[$id];
+            $array = $myfile;
+            if (count($array) > 0) {
+                $result['ok'] = true;
+                $result['msg'] = $array;
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = 'no data';
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
+    public function save_template_to_file() {
+        $data['name'] = $this->input->post('template_name');
+        $data['value'] = $this->input->post('template_value');
+
+        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            if(array($myfile) > 0) {
+                array_push($myfile, $data);
+            } else {
+                $myfile = [];
+                array_push($myfile, $data);
+            }
+            if (file_put_contents($this->mikrostator_template_file_db(), json_encode($myfile))) {
+                $result['ok'] = true;
+                $result['msg'] = 'Saved.';
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = 'Failed to save template. Maybe file permission issue.';
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        echo json_encode($result);
+    }
+
+    public function del_voucher_template_by_id_from_file() {
+        $id = $this->input->post('id');
+
+        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            unset($myfile[$id]);
+            $array = $myfile;
+            if (file_put_contents($this->mikrostator_template_file_db(), json_encode($array))) {
+                $result['ok'] = true;
+                $result['msg'] = 'Template deleted.';
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = 'Fail deleting template. Maybe file permission issue.';
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+    //from  file.end
 
 }
