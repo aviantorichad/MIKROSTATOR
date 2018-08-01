@@ -29,6 +29,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="javascript:void(0)" id="menu-voucher-profile"><i class="fa fa-circle-o"></i> <span>Voucher Profile</span></a></li>
                     <li><a href="javascript:void(0)" id="menu-voucher-list"><i class="fa fa-circle-o"></i> <span>Voucher List</span></a></li>
                 </ul>
             </li>
