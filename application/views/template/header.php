@@ -95,6 +95,7 @@
                                             <?= $this->session->userdata('user_full_name') ?>
                                             <small>Hello bro!</small>
                                         </p>
+                                        <label style="color: #fff"><input type="checkbox" checked id="app_multiview"> Multiview</label>
                                     </li>
                                     <!-- Menu Body -->
                                     <li class="user-body" style="display:none">
