@@ -92,8 +92,8 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
-                                    <li class="user-header" id="btn_user_login" style="cursor: pointer;">
-                                        <img src="<?= base_url('favicon.png') ?>" class="img-circle" alt="User Image">
+                                    <li class="user-header" style="cursor: pointer;">
+                                        <img src="<?= base_url('favicon.png') ?>" id="btn_user_login" class="img-circle" alt="User Image">
 
                                         <p>
                                             <?= $this->session->userdata('user_full_name') ?>
