@@ -27,6 +27,9 @@ You can monitor multiple routers on a single page, generate vouchers, add a usag
 php -S localhost:8000
 ```
 -- Access from your browser like this: **localhost:8000**
+- Enter this to login page (if needed):
+-- username : **admin**
+-- password : **admin**
 
 ## Testing Tools
 - PHP 7.2.7-1+ubuntu16.04.1+deb.sury.org+1
