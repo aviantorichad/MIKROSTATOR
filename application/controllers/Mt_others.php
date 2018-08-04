@@ -317,7 +317,7 @@ class Mt_others extends Admin_Controller {
                 <form autocomplete="off">
                     <div class="form-group">
                         <label class="control-label">User:</label>
-                        <select class="form-control" id="billing_user-<?= $session_id ?>" onchange="return false;$('#user_detail-<?= $session_id ?>').html('limit-uptime: ' + $('option:selected', $(this)).data('limituptime'),)">
+                        <select class="form-control input-lg" id="billing_user-<?= $session_id ?>" onchange="return false;$('#user_detail-<?= $session_id ?>').html('limit-uptime: ' + $('option:selected', $(this)).data('limituptime'),)" style="border-color: #dd4b39;">
                             <option value="*">-- select user --</option>
                         </select>
                         <!-- <span class="help-block text-right" id="user_detail-<?= $session_id ?>"></span> -->
@@ -325,14 +325,14 @@ class Mt_others extends Admin_Controller {
                     
                     <div class="form-group">
                         <label class="control-label">Type:</label>
-                        <select class="form-control" id="billing_type-<?= $session_id ?>" onchange="$(this).val()=='tr'?$('#frm_billing_user2-<?= $session_id ?>').show():$('#frm_billing_user2-<?= $session_id ?>').hide()">
+                        <select class="form-control" id="billing_type-<?= $session_id ?>" onchange="$(this).val()=='tr'?$('#frm_billing_user2-<?= $session_id ?>').show():$('#frm_billing_user2-<?= $session_id ?>').hide()" style="border-color: #009abf;">
                             <option value="*">-- select type --</option>
                         </select>
                     </div>
 
                     <div class="form-group" id="frm_billing_user2-<?= $session_id ?>" style="display:none;">
                         <label class="control-label">Sender:</label>
-                        <select class="form-control" id="billing_user2-<?= $session_id ?>" onchange="$(this).val()==$('#billing_user-<?= $session_id ?>').val()?($(this).val('*'),alert('Sender can not same with User.')):null">
+                        <select class="form-control" id="billing_user2-<?= $session_id ?>" onchange="$(this).val()==$('#billing_user-<?= $session_id ?>').val()?($(this).val('*'),alert('Sender can not same with User.')):null" style="border-color: #f39c12;">
                             <option value="*">-- select sender --</option>
                         </select>
                     </div>
@@ -638,9 +638,9 @@ class Mt_others extends Admin_Controller {
                     <label>List Type:</label>
                     <input type="hidden" id="billing_config_list_type_exist-<?=$session_id?>" value="<?=count($array_script)?>"/>
                     <input type="hidden" id="billing_config_list_type_id-<?=$session_id?>" value="<?= isset($list_script['.id']) ? $list_script['.id'] : '' ?>"/>
-                    <textarea id="billing_config_list_type-<?=$session_id?>" class="form-control" rows="4"><?= isset($list_script['source']) ? $list_script['source'] : '' ?></textarea>
+                    <textarea id="billing_config_list_type-<?=$session_id?>" class="form-control" rows="15"><?= isset($list_script['source']) ? json_encode(json_decode($list_script['source']), JSON_PRETTY_PRINT) : '' ?></textarea>
                     <textarea id="billing_config_list_type_default-<?=$session_id?>" class="form-control" rows="4" style="display: none;">[{ "name":"LAPTOP", "value":"pc", "price":"2500" }, { "name": "HP", "value": "hp", "price":"2000" }, { "name": "GADGET MAHAL", "value": "gm", "price":"20000" }]</textarea>
-                    <small class="help-block" id="help-session-list"><i class="fa fa-info-circle"></i> don't use enter. what is this? <a href="javascript:void(0)" onclick="$('#billing_config_list_type-<?=$session_id?>').val($('#billing_config_list_type_default-<?=$session_id?>').val())">load example</a></small>
+                    <small class="help-block" id="help-session-list"><i class="fa fa-info-circle"></i> don't use enter. what is this? <a href="javascript:void(0)" onclick="$('#billing_config_list_type-<?=$session_id?>').val(JSON.stringify(JSON.parse($('#billing_config_list_type_default-<?=$session_id?>').val()), null, '\t'))">load example</a></small>
                 </div>
             </form>
         <?php
