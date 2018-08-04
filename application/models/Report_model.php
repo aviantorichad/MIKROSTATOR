@@ -1,18 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mt_report extends Admin_Controller {
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-    public function __construct() {
-        parent::__construct();
-        date_default_timezone_set('Asia/Jakarta');
-
-        $this->load->model('rich_model');
-        $this->load->model('report_model');
-    }
-
-    //report selling.begin
-    public function selling_old($session_id, $cmd = "") {
+class Report_model extends CI_Model {
+    
+    public function get_selling($session_id, $cmd = "") {
         ?>
         <div id="report_selling_notifikasi-<?= $session_id ?>"></div>
         <p>
@@ -264,122 +257,7 @@ class Mt_report extends Admin_Controller {
             </script>
         </div>
         <?php
+
     }
-    public function selling($session_id, $cmd = "") {
-        echo $this->report_model->get_selling($session_id, $cmd);
-    }
-
-    public function json_selling($session_id, $cmd = "") {
-        $koneksi = $this->rich_model->get_session_by_id($session_id);
-        $API = new $this->mikrostator();
-        $output = array("data" => array());
-        if ($API->konek($koneksi)) {
-            $array = $API->comm('/system/script/print', array(
-                "?comment" => "report_mikrostator"
-            ));
-            // $array = $API->comm('/system/script/print');
-            if (isset($array['!trap'])) {
-                // trap
-                $msg_list = "";
-                foreach ($array['!trap'][0] as $key => $val):
-                    $msg_list .= $key . ': ' . $val . '\n';
-                endforeach;
-                $msg = '<span style="cursor:pointer" onclick="alert(\'' . $msg_list . '\')">Error, click for detail!</span>';
-                $output['error_msg'] = $msg;
-                echo json_encode($output, JSON_PRETTY_PRINT);
-                return false;
-            }
-            if (count($array) == 0) {
-                // no data
-                $output['error_msg'] = 'No Data!';
-                echo json_encode($output, JSON_PRETTY_PRINT);
-                return false;
-            }
-            ?>
-            <?php
-            $no = 1;
-            foreach ($array as $value):
-                $split = explode('#', $value['source']);
-                $row = array();
-                $row[] = $no;
-                $row[] = isset($split[1]) ? $split[1] : ''; //date
-                $row[] = isset($split[2]) ? $split[2] : ''; //time
-                $row[] = isset($split[3]) ? $split[3] : ''; //name
-                $row[] = isset($split[4]) ? $split[4] : ''; //validity
-                $row[] = isset($split[5]) ? $split[5] : '0'; //price
-                $row[] = isset($split[6]) ? $split[6] : ''; //ip
-                $row[] = isset($split[7]) ? $split[7] : ''; //mac
-                $row[] = isset($split[8]) ? $split[8] : ''; //host
-                $row[] = isset($split[9]) ? $split[9] : ''; //notes
-                $row[] = isset($value['owner']) ? $value['owner'] : ''; //notes
-                $row[] = isset($split[10]) ? $split[10] : ''; //voucher/billing
-                $row[] = '
-                        <button type="button" name="delete"  onclick="if (confirm(\'Are you sure?\')) {
-                            window[\'delete_report_selling-' . $session_id . '\'](\'' . $value['.id'] . '\')
-                        }"  class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-close"></i> Del</button>';
-                $row[] = isset($split[3]) ? $split[3] : ''; //name
-                $output['data'][] = $row;
-                $no++;
-            endforeach;
-            $output['error_msg'] = --$no . " Data(s)";
-            echo json_encode($output, JSON_PRETTY_PRINT);
-            ?>
-            <?php
-        } else {
-            // mikrotik not connected!
-            $output['error_msg'] = 'Mikrotik not connected!';
-            echo json_encode($output, JSON_PRETTY_PRINT);
-            return false;
-        }
-    }
-    //report selling.end
-
-    public function delete_report_selling($session_id) {
-        $msids = $this->input->post('msids');
-        $req_qty = count($msids);
-        $koneksi = $this->rich_model->get_session_by_id($session_id);
-        $API = new $this->mikrostator();
-
-        $trap = 0;
-        $done = 0;
-        $msg_trap = "";
-
-        if ($API->konek($koneksi)) {
-            foreach ($msids as $msid):
-                $n = 1;
-                $API->write("/system/script/remove", false);
-                $API->write("=.id=" . $msid);
-                $array = $API->read();
-
-                if (isset($array['!trap'])) {
-                    $trap++;
-                    foreach ($array['!trap'][0] as $key => $val):
-                        $msg_trap .= '<li>[' . $n . '] ' . $key . ': <b>' . $val . '</b></li>';
-                    endforeach;
-                } else {
-                    $done++;
-                }
-                $n++;
-            endforeach;
-            ?>
-            <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-info-circle"></i> <?= $done ?> Deleted and <?= $trap ?> Error from <?= $req_qty ?> Total Requested</h4>                    
-                <?php if ($msg_trap != "") { ?>
-                    <ul>
-                        <?= $msg_trap; ?>
-                    </ul>
-                <?php } ?>
-            </div>
-            <?php
-        } else {
-            ?>
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-ban"></i> Mikrotik not connected!</h4>                    
-            </div>
-            <?php
-        }
-    }
-
+        
 }

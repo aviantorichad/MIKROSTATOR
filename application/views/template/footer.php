@@ -1,7 +1,7 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 1.2.1
+        <b>Version</b> 1.2.2
     </div>
     <strong>Copyright &copy; 2018 <a href="javascript:void(0)">MIKROSTATOR</a>.</strong> All rights reserved.
 </footer>
