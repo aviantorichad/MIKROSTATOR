@@ -229,6 +229,11 @@ class Home extends Admin_Controller {
         return "./system/database/login_mikrotik.json";
     }
 
+    private function user_login_file_db() {
+        // return "./db/login_mikrotik.json";
+        return "./system/database/login_mikrostator.json";
+    }
+
     public function get_session_logins_from_file() {
         $myfile = file_get_contents($this->mikrostator_file_db());
         if($myfile) {
@@ -491,6 +496,90 @@ class Home extends Admin_Controller {
         </script>
         <?php
     }
+
+
+    //user login.begin
+    public function modal_user_login_config($session_id, $msid = "") {
+        $myfile = file_get_contents($this->user_login_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            $array = [];
+            foreach($myfile as $key => $val) {
+                $arr['username'] = $val['username'];
+                $arr['password'] = $val['password'];
+                array_push($array, $arr);
+            }
+            // print_r($array);
+        ?>
+            <div class="notifikasi"></div>
+            <form>
+                <div class="form-group">
+                    <label>User Login:</label>
+                    <textarea id="input_user_login_config" class="form-control" rows="15"><?= isset($array) ? json_encode($array, JSON_PRETTY_PRINT) : '' ?></textarea>
+                    <small class="help-block" id="help-session-list"><i class="fa fa-info-circle"></i> don't use enter.</small>
+                </div>
+            </form>
+        <?php
+        } else {
+            ?>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Fail to load DB. Maybe file permission issue.</h4>                    
+            </div>
+            <?php
+        }
+    }
+
+    public function get_user_login_from_file() {
+        $myfile = file_get_contents($this->user_login_file_db());
+        if($myfile) {
+            $myfile = json_decode($myfile, true);
+            $array = [];
+            foreach($myfile as $key => $val) {
+                $arr['username'] = $val['username'];
+                $arr['password'] = $val['password'];
+                array_push($array, $arr);
+            }
+
+            if(count($array) > 0){
+                $result['ok'] = true;
+                $result['msg'] = $array;
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = "no data";
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+    public function save_user_login_to_file() {
+        $data['input_user_login_config'] = $this->input->post('input_user_login_config');
+        $myfile = file_get_contents($this->user_login_file_db());
+        if($myfile) {
+            // $myfile = json_decode($myfile, true);
+            // if(array($myfile) > 0) {
+            //     array_push($myfile, $data);
+            // } else {
+            //     $myfile = [];
+            //     array_push($myfile, $data);
+            // }
+            if (file_put_contents($this->user_login_file_db(), $data['input_user_login_config'])) {
+                $result['ok'] = true;
+                $result['msg'] = 'Saved.';
+            } else {
+                $result['ok'] = false;
+                $result['msg'] = 'Failed to save session. Maybe file permission issue.';
+            }
+        } else {
+            $result['ok'] = false;
+            $result['msg'] = 'Fail to load DB. Maybe file permission issue.';            
+        }
+        echo json_encode($result);
+    }
+    //user login.end
 
     /*
      * *******************************
