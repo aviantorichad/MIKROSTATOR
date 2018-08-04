@@ -34,10 +34,14 @@
 
         <style>
             .content-wrapper {
-                background-color: #f9f9f9;
+                background-color: #222d32;
+                
             }
             .dropdown-menu{
                 z-index:2002;
+            }
+            .main-sidebar {
+                box-shadow: 2px 0px 5px #000;
             }
 
         </style>
