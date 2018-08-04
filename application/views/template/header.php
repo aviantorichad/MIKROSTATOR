@@ -121,6 +121,11 @@
                                             <a href="javascript:void(0)" class="btn btn-default btn-flat" id="logout">Del all Sessions</a>
                                         </div>
                                     </li>
+                                    <li class="user-footer">
+                                        <div>
+                                            <a href="<?=site_url('/logout')?>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-block" id="logout-one"><i class="fa fa-power-off"></i> Logout</a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>

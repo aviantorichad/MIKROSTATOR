@@ -30,20 +30,24 @@
 						</div>
 					</div> -->
 					<div class="box-body" style="padding: 30px;">
+							<?php $this->load->model('rich_model'); ?>
+						<?php if ($this->session->flashdata('message')) : ?>
+							<?php echo $this->session->flashdata('message'); ?>
+						<?php endif; ?>
 						<div class="row">
 							<div class="col-md-4" style="color: #ddd">
 								<h1 style="font-size: 2em;"><img src="<?php echo base_url('favicon.png') ?>" style="width:1.5em;"> MIKROSTATOR</h1>
 								<p>Please Log in first to enter this app..</p>
 							</div>
 							<div class="col-md-8" style="color: #999;">
-								<form>
+								<form autocomplete="off" method="post">
 									<div class="form-group">
 										<label class="control-label">Username:</label>
 										<input type="text" name="_username" class="form-control bg-black" onfocus="$(this).addClass('input-lg')" onblur="$(this).removeClass('input-lg')" style="border:none;border-bottom: 1px solid #777; color:#fff;padding-left: 0;padding-right:0;" placeholder="..." />
 									</div>
 									<div class="form-group">
 										<label class="control-label">Password:</label>
-										<input type="password" name="_username" class="form-control bg-black" onfocus="$(this).addClass('input-lg')" onblur="$(this).removeClass('input-lg')" style="border:none;border-bottom: 1px solid #777; color:#fff;padding-left: 0;padding-right:0;" placeholder="..." />
+										<input type="password" name="_password" class="form-control bg-black" onfocus="$(this).addClass('input-lg')" onblur="$(this).removeClass('input-lg')" style="border:none;border-bottom: 1px solid #777; color:#fff;padding-left: 0;padding-right:0;" placeholder="..." />
 									</div>
 									<button class="btn btn-success btn-block btn-lg" type="submit">LOG IN</button>
 								</form>

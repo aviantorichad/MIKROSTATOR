@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mt_report extends MY_Controller {
+class Mt_report extends Admin_Controller {
 
     public function __construct() {
         parent::__construct();
