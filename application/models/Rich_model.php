@@ -128,4 +128,43 @@ class Rich_model extends CI_Model {
         
         return json_decode($split[1], true);
     }
+
+    function show_msg_primary($msg = "") {
+        $msg =' <div class="alert alert-primary alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$msg.'
+              </div>';
+        return $msg;
+    }
+    
+    function show_msg_warning($msg = "") {
+        $msg =' <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$msg.'
+              </div>';
+        return $msg;
+    }
+    
+    function show_msg_danger($msg = "") {
+        $msg =' <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$msg.'
+              </div>';
+        return $msg;
+    }
+    function show_msg_success($msg = "") {
+        $msg =' <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$msg.'
+              </div>';
+        return $msg;
+    }
+    function show_msg_info($msg = "") {
+        $msg =' <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                '.$msg.'
+              </div>';
+        return $msg;
+    }
+
 }
