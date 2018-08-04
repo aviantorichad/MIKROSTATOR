@@ -124,6 +124,11 @@
             addSection(menuName, 'menu-form-billing');
         });
 
+        $('#menu-form-billing-n-report').on('click', function () {
+            var menuName = $(this).text();
+            addSection(menuName, 'menu-form-billing-n-report');
+        });
+
         $('#menu-voucher-list').on('click', function () {
             var menuName = $(this).text();
             addSection(menuName, 'menu-voucher-list');
@@ -925,6 +930,30 @@
                     window['freqAjax-' + itemValue + '-' + cmd] = function () {
                         window['reqAjax-' + itemValue + '-' + cmd] = $.ajax({
                             url: "<?= site_url('mt_others/form_billing') ?>/" + itemValue + "/" + cmd,
+                            success: function (data) {
+                                var d = new Date();
+                                var cdx = d.getDate() + '/' + eval(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(data);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
+                            },
+                            error: function (xhr) {
+                                var d = new Date();
+                                var cdx = d.getDate() + '/' + eval(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                                console.log(xhr);
+                                var msgError = 'Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText;
+                                alert(msgError);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(msgError);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
+                            }
+                        });
+                    }
+                    window['freqAjax-' + itemValue + '-' + cmd]();
+                    break;
+                case 'menu-form-billing-n-report':
+                    $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(loadingBar);
+                    window['freqAjax-' + itemValue + '-' + cmd] = function () {
+                        window['reqAjax-' + itemValue + '-' + cmd] = $.ajax({
+                            url: "<?= site_url('mt_others/form_billing_n_report') ?>/" + itemValue + "/" + cmd,
                             success: function (data) {
                                 var d = new Date();
                                 var cdx = d.getDate() + '/' + eval(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();

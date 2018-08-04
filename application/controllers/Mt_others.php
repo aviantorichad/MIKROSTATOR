@@ -9,6 +9,7 @@ class Mt_others extends Admin_Controller {
 
         $this->load->model('stator_model');
         $this->load->model('rich_model');
+        $this->load->model('report_model');
     }
 
     public function dashboard($session_id, $cmd = "") {
@@ -616,6 +617,19 @@ class Mt_others extends Admin_Controller {
             }
         }
         </script>
+        <?php
+    }
+
+    public function form_billing_n_report($session_id, $cmd = "") {
+        ?>
+        <div class="row">
+            <div class="col-md-4">
+                <?php echo $this->form_billing($session_id, $cmd); ?>
+            </div>
+            <div class="col-md-8" id="form_billing_n_report_report">
+                <?php echo $this->report_model->get_selling($session_id, $cmd); ?>
+            </div>
+        </div>
         <?php
     }
 
