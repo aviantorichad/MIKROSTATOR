@@ -305,6 +305,9 @@ class Mt_others extends Admin_Controller {
                 [ { "name":"LAPTOP", "value":"pc", "price":"2500" }, { "name": "HP", "value": "hp", "price":"2000" }, { "name": "GADGET MAHAL", "value": "gm", "price":"20000" }]
         */
         ?>
+        <div class="box no-border" style="background-color: #2c3b41; color: #ddd;">
+            <div class="box-body">
+
         <div class="row">
                 <!-- /.col -->
             <div class="col-xs-12">
@@ -359,6 +362,8 @@ class Mt_others extends Admin_Controller {
                 </form>
             </div>
             <!-- /.col -->
+        </div>
+            </div>
         </div>
 
         <!-- Modal Billing Config.begin -->
@@ -606,7 +611,7 @@ class Mt_others extends Admin_Controller {
                 if (rumus == 'pwd') {
                     var pwd = $('option:selected', $('#billing_user-<?= $session_id ?>')).data('pass');
                     console.log($('option:selected', $('#billing_user-<?= $session_id ?>')).data('pass'));
-                    $("#rumus_result").html('<div style="color:#b30000;text-align:right">password= </span><span style="color:#009988;font-weight:bold;">' + pwd + '</div>');
+                    $("#rumus_result").html('<div style="color:#f77;text-align:right">password=</span><span style="color:orange;font-weight:bold;">' + pwd + '</div>');
                     return false;
                 }
                 var hasil = rumus;
@@ -614,7 +619,7 @@ class Mt_others extends Admin_Controller {
                     hasil = eval(rumus);
                 }
                 if (rumus != '') {
-                    $("#rumus_result").html('<div style="color:#b30000;text-align:right">' + rumus + '=</span><span style="color:#009988;font-weight:bold;">' + hasil + '</div>');
+                    $("#rumus_result").html('<div style="color:#f77;text-align:right">' + rumus + '=</span><span style="color:orange;font-weight:bold;">' + hasil + '</div>');
                 }
             } else {
                 $("#rumus_result").html('');
