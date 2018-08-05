@@ -39,5 +39,7 @@
 <script src="<?= base_url('assets/js/buttons.colVis.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/buttons.bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/bootstrap3-wysihtml5.all.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/select2.full.min.js') ?>"></script>
+
 </body>
 </html>
