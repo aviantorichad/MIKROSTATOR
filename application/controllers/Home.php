@@ -224,18 +224,9 @@ class Home extends Admin_Controller {
 
     
     //dengan database file json.begin
-    private function mikrostator_file_db() {
-        // return "./db/login_mikrotik.json";
-        return "./system/database/login_mikrotik.json";
-    }
-
-    private function user_login_file_db() {
-        // return "./db/login_mikrotik.json";
-        return "./system/database/login_mikrostator.json";
-    }
-
+    
     public function get_session_logins_from_file() {
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $array = [];
@@ -269,14 +260,19 @@ class Home extends Admin_Controller {
     public function get_session_login_by_id_from_file() {
         $id = $this->input->post('id');
 
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
-            $myfile = $myfile[$id];
-            $array = $myfile;
-            if (count($array) > 0) {
-                $result['ok'] = true;
-                $result['msg'] = $array;
+            if(count($myfile) > 0) {
+                $myfile = $myfile[$id];
+                $array = $myfile;
+                if (count($array) > 0) {
+                    $result['ok'] = true;
+                    $result['msg'] = $array;
+                } else {
+                    $result['ok'] = false;
+                    $result['msg'] = 'no data';
+                }
             } else {
                 $result['ok'] = false;
                 $result['msg'] = 'no data';
@@ -292,7 +288,7 @@ class Home extends Admin_Controller {
     public function is_security_mikrotik_from_file() {
         $id = $this->input->post('id');
 
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $myfile = $myfile[$id];
@@ -320,7 +316,7 @@ class Home extends Admin_Controller {
         $id = $this->input->post('id');
         $pin = $this->input->post('pin');
 
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $myfile = $myfile[$id];
@@ -352,7 +348,7 @@ class Home extends Admin_Controller {
         $data['mikrotik_username'] = $this->input->post('mikrotik_username');
         $data['mikrotik_password'] = $this->input->post('mikrotik_password');
         $data['pin'] = $this->input->post('security_pin');
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             if(array($myfile) > 0) {
@@ -361,7 +357,7 @@ class Home extends Admin_Controller {
                 $myfile = [];
                 array_push($myfile, $data);
             }
-            if (file_put_contents($this->mikrostator_file_db(), json_encode($myfile))) {
+            if (file_put_contents($this->rich_model->mikrostator_file_db(), json_encode($myfile))) {
                 $result['ok'] = true;
                 $result['msg'] = 'Saved.';
             } else {
@@ -378,13 +374,13 @@ class Home extends Admin_Controller {
     public function del_session_list_by_id_from_file() {
         $id = $this->input->post('id');
 
-        $myfile = file_get_contents($this->mikrostator_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             unset($myfile[$id]);
             $array = $myfile;
             // print_r($array);exit(0);
-            if (file_put_contents($this->mikrostator_file_db(), json_encode($array))) {
+            if (file_put_contents($this->rich_model->mikrostator_file_db(), json_encode($array))) {
                 $result['ok'] = true;
                 $result['msg'] = 'Mikrotik deleted.';
             } else {
@@ -500,7 +496,7 @@ class Home extends Admin_Controller {
 
     //user login.begin
     public function modal_user_login_config($session_id, $msid = "") {
-        $myfile = file_get_contents($this->user_login_file_db());
+        $myfile = file_get_contents($this->rich_model->user_login_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $array = [];
@@ -531,7 +527,7 @@ class Home extends Admin_Controller {
     }
 
     public function get_user_login_from_file() {
-        $myfile = file_get_contents($this->user_login_file_db());
+        $myfile = file_get_contents($this->rich_model->user_login_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $array = [];
@@ -557,7 +553,7 @@ class Home extends Admin_Controller {
     }
     public function save_user_login_to_file() {
         $data['input_user_login_config'] = $this->input->post('input_user_login_config');
-        $myfile = file_get_contents($this->user_login_file_db());
+        $myfile = file_get_contents($this->rich_model->user_login_file_db());
         if($myfile) {
             // $myfile = json_decode($myfile, true);
             // if(array($myfile) > 0) {
@@ -566,7 +562,7 @@ class Home extends Admin_Controller {
             //     $myfile = [];
             //     array_push($myfile, $data);
             // }
-            if (file_put_contents($this->user_login_file_db(), $data['input_user_login_config'])) {
+            if (file_put_contents($this->rich_model->user_login_file_db(), $data['input_user_login_config'])) {
                 $result['ok'] = true;
                 $result['msg'] = 'Saved.';
             } else {
