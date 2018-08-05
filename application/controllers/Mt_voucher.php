@@ -1401,12 +1401,8 @@ class Mt_voucher extends Admin_Controller {
     //from database.end
 
     //from  file.begin
-    private function mikrostator_template_file_db() {
-        // return "./db/login_mikrotik.json";
-        return "./system/database/voucher_template.json";
-    }
     public function get_voucher_template_from_file() {
-        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_template_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $array = [];
@@ -1435,7 +1431,7 @@ class Mt_voucher extends Admin_Controller {
     public function get_voucher_template_by_id_from_file() {
         $id = $this->input->post('id');
 
-        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_template_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             $myfile = $myfile[$id];
@@ -1459,7 +1455,7 @@ class Mt_voucher extends Admin_Controller {
         $data['name'] = $this->input->post('template_name');
         $data['value'] = $this->input->post('template_value');
 
-        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_template_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             if(array($myfile) > 0) {
@@ -1468,7 +1464,7 @@ class Mt_voucher extends Admin_Controller {
                 $myfile = [];
                 array_push($myfile, $data);
             }
-            if (file_put_contents($this->mikrostator_template_file_db(), json_encode($myfile))) {
+            if (file_put_contents($this->rich_model->mikrostator_template_file_db(), json_encode($myfile))) {
                 $result['ok'] = true;
                 $result['msg'] = 'Saved.';
             } else {
@@ -1485,12 +1481,12 @@ class Mt_voucher extends Admin_Controller {
     public function del_voucher_template_by_id_from_file() {
         $id = $this->input->post('id');
 
-        $myfile = file_get_contents($this->mikrostator_template_file_db());
+        $myfile = file_get_contents($this->rich_model->mikrostator_template_file_db());
         if($myfile) {
             $myfile = json_decode($myfile, true);
             unset($myfile[$id]);
             $array = $myfile;
-            if (file_put_contents($this->mikrostator_template_file_db(), json_encode($array))) {
+            if (file_put_contents($this->rich_model->mikrostator_template_file_db(), json_encode($array))) {
                 $result['ok'] = true;
                 $result['msg'] = 'Template deleted.';
             } else {

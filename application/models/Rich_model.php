@@ -167,4 +167,16 @@ class Rich_model extends CI_Model {
         return $msg;
     }
 
+    function mikrostator_file_db() {
+        return "./system/database/login_mikrotik.json";
+    }
+
+    function user_login_file_db() {
+        return "./system/database/login_mikrostator.json";
+    }
+
+    function mikrostator_template_file_db() {
+        // return "./db/login_mikrotik.json";
+        return "./system/database/voucher_template.json";
+    }
 }
