@@ -13,6 +13,7 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>">
         <!-- Theme style -->
+        <link rel="stylesheet" href="<?= base_url('assets/css/select2.min.css') ?>" />
         <link rel="stylesheet" href="<?= base_url('assets/css/AdminLTE.min.css') ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/skin-green.min.css') ?>">
         <!-- DataTables -->
@@ -23,6 +24,8 @@
         
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap3-wysihtml5.min.css') ?>">
+
+
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -318,7 +318,7 @@ class Mt_others extends Admin_Controller {
                 <form autocomplete="off">
                     <div class="form-group">
                         <label class="control-label">User:</label>
-                        <select class="form-control input-lg" id="billing_user-<?= $session_id ?>" onchange="return false;$('#user_detail-<?= $session_id ?>').html('limit-uptime: ' + $('option:selected', $(this)).data('limituptime'),)" style="border-color: #dd4b39;">
+                        <select class="form-control input-lg select2" id="billing_user-<?= $session_id ?>" onchange="return false;$('#user_detail-<?= $session_id ?>').html('limit-uptime: ' + $('option:selected', $(this)).data('limituptime'),)" style="border-color: #dd4b39;">
                             <option value="*">-- select user --</option>
                         </select>
                         <!-- <span class="help-block text-right" id="user_detail-<?= $session_id ?>"></span> -->
@@ -326,7 +326,7 @@ class Mt_others extends Admin_Controller {
                     
                     <div class="form-group">
                         <label class="control-label">Type:</label>
-                        <select class="form-control" id="billing_type-<?= $session_id ?>" onchange="$(this).val()=='tr'?$('#frm_billing_user2-<?= $session_id ?>').show():$('#frm_billing_user2-<?= $session_id ?>').hide()" style="border-color: #009abf;">
+                        <select class="form-control select2" id="billing_type-<?= $session_id ?>" onchange="$(this).val()=='tr'?$('#frm_billing_user2-<?= $session_id ?>').show():$('#frm_billing_user2-<?= $session_id ?>').hide()" style="border-color: #009abf;">
                             <option value="*">-- select type --</option>
                         </select>
                     </div>
@@ -340,7 +340,7 @@ class Mt_others extends Admin_Controller {
                     
                     <div class="form-group" style="display:none;">
                         <label class="control-label">Time or Money:</label>
-                        <select class="form-control" id="billing_tom-<?= $session_id ?>">
+                        <select class="form-control select2" id="billing_tom-<?= $session_id ?>">
                             <option value="*">-- select time or money --</option>
                             <option value="money">MONEY</option>
                             <option value="time">TIME</option>
@@ -384,6 +384,12 @@ class Mt_others extends Admin_Controller {
 
         <script>
         $(document).ready(function(){
+
+            $('.select2').select2({
+                // allowClear: true
+            });
+
+
             $('#billing_config-<?= $session_id ?>').on('click', function () {
                 $('#billing_config_modal-<?= $session_id ?>').modal('show');
                 $('#billing_config_modal-<?= $session_id ?> .modal-body').html(loadingBar);
@@ -440,14 +446,15 @@ class Mt_others extends Admin_Controller {
                                     .append($("<option></option>")
                                             .attr("value", '*')
                                             .text('-- select user ('+billing_user.length+') --'));
-                                    $.each(billing_user, function (key, value) {
-                                        var limitUptime = value['limit-uptime']== null?'~':value['limit-uptime'];
-                                        $('#billing_user-<?= $session_id ?>')
-                                                .append($("<option></option>")
-                                                        .attr("value", value['.id'])
-                                                        .attr("data-pass", value['password'])
-                                                        .attr("data-limituptime", value['limit-uptime'])
-                                                        .text(value.name + ' (' + limitUptime +')'));
+                            
+                            $.each(billing_user, function (key, value) {
+                                var limitUptime = value['limit-uptime']== null?'~':value['limit-uptime'];
+                                $('#billing_user-<?= $session_id ?>')
+                                        .append($("<option></option>")
+                                                .attr("value", value['.id'])
+                                                .attr("data-pass", value['password'])
+                                                .attr("data-limituptime", value['limit-uptime'])
+                                                .text(value.name + ' (' + limitUptime +')'));
                         });
                         
                         $('#billing_user2-<?= $session_id ?> option').remove();
@@ -467,25 +474,31 @@ class Mt_others extends Admin_Controller {
 
                         //billing type.begin
                         // console.log(JSON.parse(obj.data.billing_type[0]['source']));
-                        var billing_type = JSON.parse(obj.data.billing_type[0]['source']);
-                        
                         $('#billing_type-<?= $session_id ?> option').remove();
                             $('#billing_type-<?= $session_id ?>')
                                     .append($("<option></option>")
                                             .attr("value", '*')
                                             .text('-- select type --'));
-                            $.each(billing_type, function (key, value) {
-                                $('#billing_type-<?= $session_id ?>')
-                                        .append($("<option></option>")
-                                                .attr("value", value['value'])
-                                                .attr("data-price", value['price'])
-                                                .text(value['name'] + ' ('+value['price']+'/h)'));
-                            });
-                            $('#billing_type-<?= $session_id ?>')
-                                    .append($("<option></option>")
-                                            .attr("value", 'tr')
-                                            .attr("data-price", '0')
-                                            .text('TRANSFER MINUTE(s)'));
+                                            
+                        if(obj.data.billing_type[0]['source'] != "") {
+                            var billing_type = JSON.parse(obj.data.billing_type[0]['source']);
+
+
+                            if(billing_type.length > 0) {
+                                $.each(billing_type, function (key, value) {
+                                    $('#billing_type-<?= $session_id ?>')
+                                            .append($("<option></option>")
+                                                    .attr("value", value['value'])
+                                                    .attr("data-price", value['price'])
+                                                    .text(value['name'] + ' ('+value['price']+'/h)'));
+                                });
+                            }
+                        }
+                        $('#billing_type-<?= $session_id ?>')
+                                .append($("<option></option>")
+                                        .attr("value", 'tr')
+                                        .attr("data-price", '0')
+                                        .text('TRANSFER MINUTE(s)'));
                         //billing type.end
 
 
@@ -674,34 +687,6 @@ class Mt_others extends Admin_Controller {
         $output = array("data" => array());
         if ($API->konek($koneksi)) {
 
-            //get user list.begin
-            $array = $API->comm('/ip/hotspot/user/print');
-            if (isset($array['!trap'])) {
-                // trap
-                $msg_list = "";
-                foreach ($array['!trap'][0] as $key => $val):
-                    $msg_list .= $key . ': ' . $val . '\n';
-                endforeach;
-                $msg = '<span style="cursor:pointer" onclick="alert(\'' . $msg_list . '\')">Error, click for detail!</span>';
-                $output['error_msg'] = $msg;
-                echo json_encode($output, JSON_PRETTY_PRINT);
-                return false;
-            }
-            if (count($array) == 0) {
-                // no data
-                $output['error_msg'] = 'No Data!';
-                echo json_encode($output, JSON_PRETTY_PRINT);
-                return false;
-            }
-            ?>
-            <?php
-            $output['data']['billing_user'] = $array;
-            $output['error_msg']['billing_user'] = "";
-            //get user list.end
-            ?>
-
-
-            <?php
             //get type list.begin
             $array = $API->comm('/system/script/print', array(
                 "?name" => "mikrostator_list_type"
@@ -729,7 +714,34 @@ class Mt_others extends Admin_Controller {
             $output['data']['billing_type'] = $array;
             $output['error_msg']['billing_type'] = "";
             //get type list.end
+
+            //get user list.begin
+            $array = $API->comm('/ip/hotspot/user/print');
+            if (isset($array['!trap'])) {
+                // trap
+                $msg_list = "";
+                foreach ($array['!trap'][0] as $key => $val):
+                    $msg_list .= $key . ': ' . $val . '\n';
+                endforeach;
+                $msg = '<span style="cursor:pointer" onclick="alert(\'' . $msg_list . '\')">Error, click for detail!</span>';
+                $output['error_msg'] = $msg;
+                echo json_encode($output, JSON_PRETTY_PRINT);
+                return false;
+            }
+            if (count($array) == 0) {
+                // no data
+                $output['error_msg'] = 'No Data!';
+                echo json_encode($output, JSON_PRETTY_PRINT);
+                return false;
+            }
             ?>
+            <?php
+            $output['data']['billing_user'] = $array;
+            $output['error_msg']['billing_user'] = "";
+            //get user list.end
+            ?>
+
+
             <?php
             $output['error_msg'] = "";
             echo json_encode($output, JSON_PRETTY_PRINT);
