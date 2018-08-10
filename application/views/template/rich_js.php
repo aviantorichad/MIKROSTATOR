@@ -129,6 +129,11 @@
             addSection(menuName, 'menu-form-billing-n-report');
         });
 
+        $('#menu-form-billing-add-user-hotspot').on('click', function () {
+            var menuName = $(this).text();
+            addSection(menuName, 'menu-hotspot-user');
+        });
+
         $('#menu-voucher-list').on('click', function () {
             var menuName = $(this).text();
             addSection(menuName, 'menu-voucher-list');

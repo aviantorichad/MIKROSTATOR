@@ -45,6 +45,7 @@
                 <ul class="treeview-menu">
                     <li><a href="javascript:void(0)" id="menu-form-billing"><i class="fa fa-circle-o"></i> <span>Add Billing</span></a></li>
                     <li><a href="javascript:void(0)" id="menu-form-billing-n-report"><i class="fa fa-circle-o"></i> <span>Billing + Report</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-form-billing-add-user-hotspot"><i class="fa fa-circle-o"></i> <span>Add User Hotspot</span></a></li>
                 </ul>
             </li>
 

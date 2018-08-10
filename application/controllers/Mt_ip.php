@@ -1348,11 +1348,12 @@ class Mt_ip extends Admin_Controller {
                                                             alert('Please fill name!');
                                                             return false;
                                                         }
-        // validasi form.end
-
+                                                        // validasi form.end                            
+                                                        
                                                         var formData = {
                                                             "hotspot_user_server": $('#hotspot-user-server').val(),
                                                             "hotspot_user_profile": $('#hotspot-user-profile').val(),
+                                                            "hotspot_user_profile_validity": $('#hotspot-user-profile').find(':selected').data('validity'),
                                                             "hotspot_user_id": $('#hotspot-user-id').val(),
                                                             "hotspot_user_name": $('#hotspot-user-name').val(),
                                                             "hotspot_user_password": $('#hotspot-user-password').val(),
@@ -1561,7 +1562,7 @@ class Mt_ip extends Admin_Controller {
                                 <select class="form-control" id="hotspot-user-profile">
                                     <!--<option value="*">-- Select Profile --</option>-->
                                     <?php foreach ($list_user_profile as $value): ?>
-                                        <option value="<?= $value['name'] ?>" <?= isset($list_user['profile']) ? $value['name'] == $list_user['profile'] ? 'selected' : '' : '' ?>><?= $value['name'] ?></option>                        
+                                        <option value="<?= $value['name'] ?>" data-validity="<?=isset($value['on-logout']) ? $this->rich_model->parse_validity($value['on-logout'], 'validity') : '' ?>" <?= isset($list_user['profile']) ? $value['name'] == $list_user['profile'] ? 'selected' : '' : '' ?>><?= $value['name'] ?></option>                        
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -1679,6 +1680,7 @@ class Mt_ip extends Admin_Controller {
         $hotspot_user_address = $this->input->post('hotspot_user_address');
         $hotspot_user_mac_address = $this->input->post('hotspot_user_mac_address');
         $hotspot_user_profile = $this->input->post('hotspot_user_profile');
+        $hotspot_user_profile_validity = $this->input->post('hotspot_user_profile_validity');
         $hotspot_user_routes = $this->input->post('hotspot_user_routes');
         $hotspot_user_email = $this->input->post('hotspot_user_email');
         $hotspot_user_limit_uptime = $this->input->post('hotspot_user_limit_uptime');
@@ -1698,6 +1700,14 @@ class Mt_ip extends Admin_Controller {
                 // add
                 $API->write("/ip/hotspot/user/add", false);
             }
+
+
+            // bypass untuk user dengan profile seperti voucher
+            if($hotspot_user_profile_validity != "") {
+                $hotspot_user_email = 'voucher@mikro.stator';
+                $hotspot_user_comment = '{"vname":"iManual", "vcomment": "'.$hotspot_user_comment.'"}';
+            }
+
             // required
             $API->write("=server=" . $hotspot_user_server, false);
             $API->write("=profile=" . $hotspot_user_profile, false);
@@ -1710,7 +1720,7 @@ class Mt_ip extends Admin_Controller {
             $hotspot_user_mac_address != '' ? $API->write("=mac-address=" . $hotspot_user_mac_address, false) : NULL;
             $hotspot_user_routes != '' ? $API->write("=routes=" . $hotspot_user_routes, false) : NULL;
             $hotspot_user_email != '' ? $API->write("=email=" . $hotspot_user_email, false) : NULL;
-
+            
             // limits
             $hotspot_user_limit_uptime != '' ? $API->write("=limit-uptime=" . $hotspot_user_limit_uptime, false) : NULL;
             $hotspot_user_limit_bytes_in != '' ? $API->write("=limit-bytes-in=" . $hotspot_user_limit_bytes_in, false) : NULL;
@@ -1719,6 +1729,7 @@ class Mt_ip extends Admin_Controller {
 
             // prolog
             $API->write("=comment=" . $hotspot_user_comment);
+
             $array = $API->read();
 
 //                $this->rich_model->debug_array($array, true);
@@ -2127,8 +2138,8 @@ class Mt_ip extends Admin_Controller {
                 $row[] = isset($value['shared-users']) ? $value['shared-users'] : '';
                 $row[] = isset($value['rate-limit']) ? $value['rate-limit'] : '';
                 $row[] = isset($value['transparent-proxy']) ? $this->rich_model->get_logic_label($value['transparent-proxy']) : '';
-                $row[] = isset($value['on-login']) ? $this->rich_model->parse_validity($value['on-login'], 'validity') : '';
-                $row[] = isset($value['on-login']) ? $this->rich_model->parse_validity($value['on-login'], 'price') : '';
+                $row[] = isset($value['on-logout']) ? $this->rich_model->parse_validity($value['on-logout'], 'validity') : '';
+                $row[] = isset($value['on-logout']) ? $this->rich_model->parse_validity($value['on-logout'], 'price') : '';
                 $row[] = isset($value['default']) ? $this->rich_model->get_logic_label($value['default']) : '';
                 $row[] = '<button type="button" name="edit" onclick="window[\'edit-hotspot-user-profile-' . $session_id . '\'](\'' . $value['.id'] . '\')" class="btn btn-primary btn-xs" title="Edit"><i class="fa fa-pencil-square"></i> Edit</button>
 <button type="button" name="delete"  onclick="if (confirm(\'Are you sure?\')) {
@@ -2241,12 +2252,12 @@ class Mt_ip extends Admin_Controller {
                         <form>
                             <div class="form-group">
                                 <label class="control-label">Validity:</label>
-                                <input type="text" class="form-control" id="hotspot-user-profile-validity" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['on-login']) ? $this->rich_model->parse_validity($list_user_profile['on-login'], 'validity') : '' ?>">
+                                <input type="text" class="form-control" id="hotspot-user-profile-validity" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['on-logout']) ? $this->rich_model->parse_validity($list_user_profile['on-logout'], 'validity') : '' ?>">
                                 <small class="help-block" id="help-session-list">example : 1w2d3h4m5s</small>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Price:</label>
-                                <input type="number" class="form-control" id="hotspot-user-profile-price" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['on-login']) ? $this->rich_model->parse_validity($list_user_profile['on-login'], 'price') : '' ?>" min="0">
+                                <input type="number" class="form-control" id="hotspot-user-profile-price" autocomplete="off" placeholder="" value="<?= isset($list_user_profile['on-logout']) ? $this->rich_model->parse_validity($list_user_profile['on-logout'], 'price') : '' ?>" min="0">
                                 <small class="help-block" id="help-session-list">example : 50000</small>
                             </div>
                         </form>
@@ -2333,14 +2344,23 @@ class Mt_ip extends Admin_Controller {
             $API->write("=transparent-proxy=" . $hotspot_user_profile_transparent_proxy, false);
 
             // advanced
-            $for_validity = ':put #' . $hotspot_user_profile_validity . '#' . $hotspot_user_profile_price . '#;';
-            $for_validity .= ':local nama ($user);:local date [/system clock get date ];:local time [/system clock get time ];:local uptime ('.$hotspot_user_profile_validity.');:delay 5s;:local dirh ("hotspot");:local nmfile ("vex-$nama");:local path ("$dirh/$nmfile");';
+            /// -- pemisah untuk validity dan price
+            $param_validity = ':local x "#' . $hotspot_user_profile_validity . '#' . $hotspot_user_profile_price . '#";';
+
+            $for_validity = ':local nama $user;';
+            $for_validity .= ':local date [/system clock get date];';
+            $for_validity .= ':local time [/system clock get time];';
             $for_validity .= '{';
-            $for_validity .= '/system scheduler add comment="mikrostator" disabled=no interval=$uptime name=$nama on-event="[/ip hotspot user set limit-uptime=1s [find where name=$nama]];[/ip hotspot active remove [find where user=$nama]];[/system scheduler remove [find where name=$nama]];[/file remove $path.txt]" start-date=$date start-time=$time;';
-            $for_validity .= ':local year [:pick $date 7 11];:local month [:pick $date 0 3];/system script add name="$nama" source=":put #$date#$time#$nama#' . $hotspot_user_profile_validity . '#' . $hotspot_user_profile_price . '#$address#$"mac-address"###voucher#;" owner="$year-$month" comment="report_mikrostator";';
-            $for_validity .= ':local expired ([/system scheduler get [find where name=$nama]]->"next-run");:delay 5s;/file print file=$path;:delay 5s;/file set "$path.txt" contents=$expired;';
+                $for_validity .= ':if ([/system schedule find name=$nama]="") do={';
+                    $for_validity .= '/system schedule add name=$nama comment="mikrostator" interval='.$hotspot_user_profile_validity.' on-event="/ip hotspot user disable [find name=$nama]\r\n/ip hotspot active remove [find user=$nama]\r\n/system schedule remove [find name=$nama]\r\n/ip hotspot cookie remove [find user=$nama]"';
+                $for_validity .= '};';
+                    $for_validity .= ':local year [:pick $date 7 11];';
+                    $for_validity .= ':local month [:pick $date 0 3];';
+                    $for_validity .= '/system script add name="$nama" source="#$date#$time#$nama#' . $hotspot_user_profile_validity . '#' . $hotspot_user_profile_price . '#$address#$"mac-address"###voucher#;" owner="$year-$month" comment="report_mikrostator";';
             $for_validity .= '}';
+
             $API->write("=on-login=" . $for_validity, false);
+            $API->write("=on-logout=" . $param_validity, false);
 
             
             // scripts
