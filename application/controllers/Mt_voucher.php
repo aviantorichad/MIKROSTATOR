@@ -479,8 +479,8 @@ class Mt_voucher extends Admin_Controller {
                 return false;
             }
             foreach ($array_profile as $value_profile):
-                $row_profile[$value_profile['name']]['vvalidity'] = isset($value_profile['on-login']) ? $this->rich_model->parse_validity($value_profile['on-login'], 'validity') : '';
-                $row_profile[$value_profile['name']]['vprice'] = isset($value_profile['on-login']) ? $this->rich_model->parse_validity($value_profile['on-login'], 'price') : '';
+                $row_profile[$value_profile['name']]['vvalidity'] = isset($value_profile['on-logout']) ? $this->rich_model->parse_validity($value_profile['on-logout'], 'validity') : '';
+                $row_profile[$value_profile['name']]['vprice'] = isset($value_profile['on-logout']) ? $this->rich_model->parse_validity($value_profile['on-logout'], 'price') : '';
             endforeach;
 
 
@@ -669,8 +669,8 @@ class Mt_voucher extends Admin_Controller {
                                     <?php foreach ($list_user_profile as $value): ?>
                                         <option 
                                             value="<?= $value['name'] ?>" 
-                                            data-validity="<?= isset($value['on-login']) ? $this->rich_model->parse_validity($value['on-login'], 'validity') : '' ?>" 
-                                            data-price="<?= isset($value['on-login']) ? $this->rich_model->parse_validity($value['on-login'], 'price') : '' ?>" 
+                                            data-validity="<?= isset($value['on-logout']) ? $this->rich_model->parse_validity($value['on-logout'], 'validity') : '' ?>" 
+                                            data-price="<?= isset($value['on-logout']) ? $this->rich_model->parse_validity($value['on-logout'], 'price') : '' ?>" 
                                             <?= isset($list_user['profile']) ? $value['name'] == $list_user['profile'] ? 'selected' : '' : '' ?>
                                         >
                                             <?= $value['name'] ?>
