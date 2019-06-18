@@ -8,7 +8,8 @@
                 <option value="*">-- Select Session --</option>
             </select>
             <span class="input-group-btn">
-                <button type="button" name="add_session" id="add-session" class="btn btn-flat" title="Session Menu" data-toggle="modal" data-target="#add-session-modal"><i class="fa fa-database"></i>
+                <button type="button" name="add_session" id="add-session" class="btn btn-flat" title="Session Menu"
+                        data-toggle="modal" data-target="#add-session-modal"><i class="fa fa-database"></i>
                 </button>
             </span>
         </div>
@@ -17,7 +18,8 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MIKROSTATOR MENU</li>
-            <li><a hr   ef="javascript:void(0)" id="menu-dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a hr ef="javascript:void(0)" id="menu-dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+            </li>
 
 
             <li class="treeview">
@@ -29,8 +31,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="javascript:void(0)" id="menu-voucher-profile"><i class="fa fa-circle-o"></i> <span>Voucher Profile</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-voucher-list"><i class="fa fa-circle-o"></i> <span>Voucher List</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-voucher-profile"><i class="fa fa-circle-o"></i> <span>Voucher Profile</span></a>
+                    </li>
+                    <li><a href="javascript:void(0)" id="menu-voucher-list"><i class="fa fa-circle-o"></i> <span>Voucher List</span></a>
+                    </li>
                 </ul>
             </li>
 
@@ -43,9 +47,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="javascript:void(0)" id="menu-form-billing"><i class="fa fa-circle-o"></i> <span>Add Billing</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-form-billing-n-report"><i class="fa fa-circle-o"></i> <span>Billing + Report</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-form-billing-add-user-hotspot"><i class="fa fa-circle-o"></i> <span>Add User Hotspot</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-form-billing"><i class="fa fa-circle-o"></i> <span>Add Billing</span></a>
+                    </li>
+                    <li><a href="javascript:void(0)" id="menu-form-billing-n-report"><i class="fa fa-circle-o"></i>
+                            <span>Billing + Report</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-form-billing-add-user-hotspot"><i
+                                    class="fa fa-circle-o"></i> <span>Add User Hotspot</span></a></li>
                 </ul>
             </li>
 
@@ -58,7 +65,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="javascript:void(0)" id="menu-report-selling"><i class="fa fa-circle-o"></i> <span>Selling Report</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-report-selling"><i class="fa fa-circle-o"></i> <span>Selling Report</span></a>
+                    </li>
                 </ul>
             </li>
 
@@ -72,14 +80,18 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="javascript:void(0)" id="menu-log-hotspot"><i class="fa fa-circle-o"></i> <span>Log Hotspot</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-log-access"><i class="fa fa-circle-o"></i> <span>Log Access</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-ping"><i class="fa fa-circle-o"></i> <span>Ping</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-log-hotspot"><i class="fa fa-circle-o"></i> <span>Log Hotspot</span></a>
+                    </li>
+                    <li><a href="javascript:void(0)" id="menu-log-access"><i class="fa fa-circle-o"></i> <span>Log Access</span></a>
+                    </li>
+                    <li><a href="javascript:void(0)" id="menu-ping"><i class="fa fa-circle-o"></i> <span>Ping</span></a>
+                    </li>
                 </ul>
             </li>
-            
+
             <li>
-                <a href="javascript:void(0)" id="menu-session-detail"><i class="fa fa-desktop"></i> <span>Session Detail</span></a>
+                <a href="javascript:void(0)" id="menu-session-detail"><i class="fa fa-desktop"></i>
+                    <span>Session Detail</span></a>
             </li>
 
             <li>
@@ -87,6 +99,8 @@
             </li>
 
             <li class="header">MIKROTIK MENU</li>
+            <li><a href="javascript:void(0)" id="menu-interface"><i class="fa fa-list-ol"></i> <span>Interface</span></a></li>
+
             <li class="treeview <?php echo ($this->uri->segment(1)) == "setting" ? "active" : "" ?>">
                 <a href="javascript:void(0)">
                     <i class="fa fa-wifi"></i>
@@ -96,14 +110,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-<!--                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> ARP</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Accounting</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Address</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Client</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Relay</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Server</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DNS</a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Firewall</a></li>-->
+                    <!--                    <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> ARP</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Accounting</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Address</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Client</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Relay</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DHCP Server</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> DNS</a></li>
+										<li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Firewall</a></li>-->
                     <li class="treeview">
                         <a href="javascript:void(0)">
                             <i class="fa fa-circle-o"></i> <span>Hotspot</span>
@@ -112,13 +126,20 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="javascript:void(0)" id="menu-hotspot-server"><i class="fa fa-circle"></i> Hotspot Server</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-server-profile"><i class="fa fa-circle"></i> Hotspot Server Profile</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-user"><i class="fa fa-circle"></i> Hotspot User</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-user-profile"><i class="fa fa-circle"></i> Hotspot User Profile</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-active"><i class="fa fa-circle"></i> Hotspot Active</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-host"><i class="fa fa-circle"></i> Hotspot Host</a></li>
-                            <li><a href="javascript:void(0)" id="menu-hotspot-ip-binding"><i class="fa fa-circle"></i> Hotspot IP Binding</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-server"><i class="fa fa-circle"></i>
+                                    Hotspot Server</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-server-profile"><i
+                                            class="fa fa-circle"></i> Hotspot Server Profile</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-user"><i class="fa fa-circle"></i> Hotspot
+                                    User</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-user-profile"><i class="fa fa-circle"></i>
+                                    Hotspot User Profile</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-active"><i class="fa fa-circle"></i>
+                                    Hotspot Active</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-host"><i class="fa fa-circle"></i> Hotspot
+                                    Host</a></li>
+                            <li><a href="javascript:void(0)" id="menu-hotspot-ip-binding"><i class="fa fa-circle"></i>
+                                    Hotspot IP Binding</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -129,12 +150,18 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server"><i class="fa fa-circle"></i> DHCP Server</a></li>
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server-network"><i class="fa fa-circle"></i> DHCP Server Network</a></li>
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server-lease"><i class="fa fa-circle"></i> DHCP Server Lease</a></li>
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server-option"><i class="fa fa-circle"></i> DHCP Server Option</a></li>
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server-option-set"><i class="fa fa-circle"></i> DHCP Server Option Set</a></li>
-                            <li><a href="javascript:void(0)" id="menu-dhcp-server-alert"><i class="fa fa-circle"></i> DHCP Server Alert</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server"><i class="fa fa-circle"></i> DHCP
+                                    Server</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server-network"><i class="fa fa-circle"></i>
+                                    DHCP Server Network</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server-lease"><i class="fa fa-circle"></i>
+                                    DHCP Server Lease</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server-option"><i class="fa fa-circle"></i>
+                                    DHCP Server Option</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server-option-set"><i
+                                            class="fa fa-circle"></i> DHCP Server Option Set</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dhcp-server-alert"><i class="fa fa-circle"></i>
+                                    DHCP Server Alert</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -145,13 +172,14 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="javascript:void(0)" id="menu-dns-cache"><i class="fa fa-circle"></i> DNS Cache</a></li>
+                            <li><a href="javascript:void(0)" id="menu-dns-cache"><i class="fa fa-circle"></i> DNS Cache</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </li>
 
-<!--            <li class="treeview <?php echo ($this->uri->segment(1)) == "setting" ? "active" : "" ?>">
+            <!--            <li class="treeview <?php echo ($this->uri->segment(1)) == "setting" ? "active" : "" ?>">
                 <a href="javascript:void(0)">
                     <i class="fa fa-gears"></i>
                     <span>Voucher</span>
@@ -173,8 +201,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="javascript:void(0)" id="menu-system-resource"><i class="fa fa-circle-o"></i> <span>System Resources</span></a></li>
-                    <li><a href="javascript:void(0)" id="menu-system-administrator"><i class="fa fa-circle-o"></i> <span>System Administrator</span></a></li>
+                    <li><a href="javascript:void(0)" id="menu-system-resource"><i class="fa fa-circle-o"></i> <span>System Resources</span></a>
+                    </li>
+                    <li><a href="javascript:void(0)" id="menu-system-administrator"><i class="fa fa-circle-o"></i>
+                            <span>System Administrator</span></a></li>
                 </ul>
             </li>
 
@@ -185,13 +215,13 @@
 </aside>
 
 
-
 <!-- Modal -->
 <div class="modal fade" id="add-session-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">Mikrotik</h4>
             </div>
             <div class="modal-body">
@@ -207,7 +237,8 @@
                         </div>
                         <div class="col-sm-12">
                             <label class="control-label"></label>
-                            <button type="button" class="btn btn-success btn-block"><i class="fa fa-lock"></i> Login</button>
+                            <button type="button" class="btn btn-success btn-block"><i class="fa fa-lock"></i> Login
+                            </button>
                         </div>
                     </div>
                     <div class="row clearfix">
@@ -216,13 +247,15 @@
                                 <label for="recipient-name" class="control-label">Select from DB:</label>
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-flat" id="reload-session-list"><i class="fa fa-refresh"></i></button>
+                                        <button type="button" class="btn btn-default btn-flat" id="reload-session-list"><i
+                                                    class="fa fa-refresh"></i></button>
                                     </span>
                                     <select id="session-list" class="form-control">
                                         <option value="*">-- Select Mikrotik --</option>
                                     </select>
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-danger btn-flat" id="del-new-session" title="Del from DB"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-danger btn-flat" id="del-new-session"
+                                                title="Del from DB"><i class="fa fa-trash"></i></button>
                                     </span>
                                 </div>
                                 <small class="help-block" id="help-session-list">please reload..</small>
@@ -235,7 +268,8 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Session Name:</label>
-                                <input type="hidden" class="form-control" id="session-id" placeholder="" value="<?= date('YmdHis') ?>">
+                                <input type="hidden" class="form-control" id="session-id" placeholder=""
+                                       value="<?= date('YmdHis') ?>">
                                 <input type="text" class="form-control" id="mikrotik-name" placeholder="">
                                 <small class="help-block">Example: My Mikrotik</small>
                             </div>
@@ -296,7 +330,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">
                     Mikrotik Detail
                     <small>Mikrotik Name</small>
@@ -318,7 +353,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">
                     About MIKROSTATOR
                 </h4>
@@ -353,40 +389,45 @@
                                 <li>Penguin Web Server on Android</li>
                             </ul>
                             <hr>
-                            
+
                             <h4>Documentation</h4>
-                                <ul>
-                                    <li><a href="http://aviantorichad.github.io/MIKROSTATOR/" target="_blank">Publication Page</a></li>
-                                    <li><a href="http://mikrostator.aviantorichad.com" target="_blank">Blog</a></li>
-                                    <li><a href="https://www.youtube.com/playlist?list=PLYM1Z9mW-R4-0a7YdpHtJaK2Ih74oClAR" target="_blank">Youtube</a></li>
-                                    <li><a href="https://instagram.com/mikrostator" target="_blank">Instagram</a></li>
-                                </ul>
+                            <ul>
+                                <li><a href="http://aviantorichad.github.io/MIKROSTATOR/" target="_blank">Publication
+                                        Page</a></li>
+                                <li><a href="http://mikrostator.aviantorichad.com" target="_blank">Blog</a></li>
+                                <li><a href="https://www.youtube.com/playlist?list=PLYM1Z9mW-R4-0a7YdpHtJaK2Ih74oClAR"
+                                       target="_blank">Youtube</a></li>
+                                <li><a href="https://instagram.com/mikrostator" target="_blank">Instagram</a></li>
+                            </ul>
                             <hr>
 
                             <h4>License</h4>
-                                <ul>
-                                    <li>MIT</li>
-                                </ul>
+                            <ul>
+                                <li>MIT</li>
+                            </ul>
                             <hr>
 
                             <h4>Developer(s)</h4>
                             <ul>
-                                    <li>
+                                <li>
                                     <a href="http://aviantorichad.com" target="_blank">@aviantorichad</a>
-                             - <small>a father who is trying to make his wife and his son happy</small>
-                                    </li>
-                                </ul>
+                                    -
+                                    <small>a father who is trying to make his wife and his son happy</small>
+                                </li>
+                            </ul>
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="tab_2_about">
                             <p>
-                                Ini adalah tempat anda, silakan bagikan pengalaman anda menggunakan 
-                                MIKROSTATOR. Anda bisa berkontribusi sebagai penguji coba, mencari bug, membuat dokumentasi, 
+                                Ini adalah tempat anda, silakan bagikan pengalaman anda menggunakan
+                                MIKROSTATOR. Anda bisa berkontribusi sebagai penguji coba, mencari bug, membuat
+                                dokumentasi,
                                 review, dan sebagainya.
                             </p>
                             <p>
                                 <i>
-                                This is your place, please share your experience using MIKROSTATOR. You can contribute as a tester, debugger, create documentation, reviews, and so on.
+                                    This is your place, please share your experience using MIKROSTATOR. You can
+                                    contribute as a tester, debugger, create documentation, reviews, and so on.
                                 </i>
                             </p>
                             <ul>
@@ -416,21 +457,21 @@
                                             <p>Klik tombol di bawah untuk melakukan
                                                 donasi via paypal</p>
                                             <form
-                                                action="https://www.paypal.com/cgi-bin/webscr"
-                                                method="post" target="_top">
+                                                    action="https://www.paypal.com/cgi-bin/webscr"
+                                                    method="post" target="_top">
                                                 <input type="hidden" name="cmd"
-                                                    value="_s-xclick" />
+                                                       value="_s-xclick"/>
                                                 <input type="hidden"
-                                                    name="hosted_button_id"
-                                                    value="EK6UWF45PVDR6" />
+                                                       name="hosted_button_id"
+                                                       value="EK6UWF45PVDR6"/>
                                                 <input type="image"
-                                                    src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
-                                                    border="0" name="submit" alt="PayPal
+                                                       src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+                                                       border="0" name="submit" alt="PayPal
                                                     - The
-                                                    safer, easier way to pay online!" />
+                                                    safer, easier way to pay online!"/>
                                                 <img alt="" border="0"
-                                                    src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif"
-                                                    width="1" height="1" />
+                                                     src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif"
+                                                     width="1" height="1"/>
                                             </form>
                                         </div>
                                     </div>
@@ -458,7 +499,8 @@
                 <!-- Custom Tabs -->
             </div>
             <div class="modal-footer">
-                <small>created with <i class="fa fa-heart" style="color: #b00"></i> by <a href="http://instagram.com/aviantorichad" target="_blank">@aviantorichad</a></small>                    
+                <small>created with <i class="fa fa-heart" style="color: #b00"></i> by <a
+                            href="http://instagram.com/aviantorichad" target="_blank">@aviantorichad</a></small>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -471,7 +513,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">
                     System Administrator
                     <small>Session Name</small>
