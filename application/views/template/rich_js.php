@@ -1,4 +1,3 @@
-
 <script>
     $(document).ready(function () {
         loadingBar = '<div class="alert bg-gray"><i class="fa fa-refresh fa-spin"></i> loading...</div>';
@@ -35,7 +34,7 @@
                                         <li>Port: <b>' + objData.mikrotik_port + '</b></li>\n\
                                         <li>Username: <b>' + objData.mikrotik_username + '</b></li>\n\
                                         <li>Password: <b>' + objData.mikrotik_password + '</b></li>\n\
-                                    </ul>'
+                                    </ul>';
 
                         $('#session-detail-modal').modal('show');
                         $('#session-detail-modal .modal-header small').html(itemText);
@@ -154,6 +153,12 @@
             addSection(menuName, 'menu-dhcp-server-lease');
         });
 
+        // INTERFACE MENU
+        $('#menu-interface').on('click', function () {
+            var menuName = $(this).text();
+            addSection(menuName, 'menu-interface');
+        });
+
         $('#menu-system-administrator').on('click', function () {
             var itemValue = $('#select-session').val();
             var itemText = $('#select-session :selected').text();
@@ -168,7 +173,7 @@
                         var objData = JSON.parse(data);
                         var formatData = '';
                         formatData = '<center><button id="reboot-' + itemValue + '" class="btn btn-lg btn-warning" onclick="mikrotikReboot(' + itemValue + ')"><i class="fa fa-gear"></i> Reboot</button>\n\
-                                <button id="shutdown-' + itemValue + '" class="btn btn-lg btn-danger" onclick="mikrotikShutdown(' + itemValue + ')"><i class="fa fa-power-off"></i> Shutdown</button></center>'
+                                <button id="shutdown-' + itemValue + '" class="btn btn-lg btn-danger" onclick="mikrotikShutdown(' + itemValue + ')"><i class="fa fa-power-off"></i> Shutdown</button></center>';
 
                         $('#system-administrator-modal').modal('show');
                         $('#system-administrator-modal .modal-header small').html(itemText);
@@ -228,14 +233,14 @@
 
                     $('#session-list option').remove();
                     $('#session-list')
-                            .append($("<option></option>")
-                                    .attr("value", '*')
-                                    .text('-- Select Mikrotik --'));
+                        .append($("<option></option>")
+                            .attr("value", '*')
+                            .text('-- Select Mikrotik --'));
                     $.each(obj.msg, function (key, value) {
                         $('#session-list')
-                                .append($("<option></option>")
-                                        .attr("value", value.id)
-                                        .text(value.mikrotik_name));
+                            .append($("<option></option>")
+                                .attr("value", value.id)
+                                .text(value.mikrotik_name));
                     });
 
                     $('#help-session-list').html('#uptodate');
@@ -323,7 +328,7 @@
                 }
             });
         });
-        
+
         function useSession() {
             reqAjax = $.ajax({
                 url: "<?= site_url('home/get_session_login_by_id_from_file') ?>",
@@ -366,9 +371,9 @@
                             alert(obj.msg);
                             $('#session-list option').remove();
                             $('#session-list')
-                                    .append($("<option></option>")
-                                            .attr("value", '*')
-                                            .text('-- Select Mikrotik --'));
+                                .append($("<option></option>")
+                                    .attr("value", '*')
+                                    .text('-- Select Mikrotik --'));
                             $('#mikrotik-name').val('');
                             $('#mikrotik-host').val('');
                             $('#mikrotik-port').val('');
@@ -392,19 +397,19 @@
         });
 
         $('#save-new-session').on('click', function () {
-            if($('#mikrotik-name').val() == ""){
+            if ($('#mikrotik-name').val() == "") {
                 alert('Please fill Session Name');
                 return false;
             }
-            if($('#mikrotik-host').val() == ""){
+            if ($('#mikrotik-host').val() == "") {
                 alert('Please fill Host Mikrotik');
                 return false;
             }
-            if($('#mikrotik-port').val() == ""){
+            if ($('#mikrotik-port').val() == "") {
                 alert('Please fill Port Mikrotik');
                 return false;
             }
-            if($('#mikrotik-username').val() == ""){
+            if ($('#mikrotik-username').val() == "") {
                 alert('Please fill username Mikrotik');
                 return false;
             }
@@ -417,7 +422,7 @@
                 "mikrotik_username": $('#mikrotik-username').val(),
                 "mikrotik_password": $('#mikrotik-password').val(),
                 "security_pin": $('#security-pin').val()
-            }
+            };
             reqAjax = $.ajax({
                 url: "<?= site_url('home/save_session_to_file') ?>",
                 type: 'POST',
@@ -447,7 +452,7 @@
                 "mikrotik_port": $('#mikrotik-port').val(),
                 "mikrotik_username": $('#mikrotik-username').val(),
                 "mikrotik_password": $('#mikrotik-password').val()
-            }
+            };
             reqAjax = $.ajax({
                 url: "<?= site_url('home/insert_session') ?>",
                 type: 'POST',
@@ -456,12 +461,12 @@
 //                    $('#select-session').remove('option'); //remove all option
                     $('#add-session-modal').modal('hide');
                     $('#add-session-modal')
-                            .find("input,textarea,select")
-                            .val('')
-                            .end()
-                            .find("input[type=checkbox], input[type=radio]")
-                            .prop("checked", "")
-                            .end();
+                        .find("input,textarea,select")
+                        .val('')
+                        .end()
+                        .find("input[type=checkbox], input[type=radio]")
+                        .prop("checked", "")
+                        .end();
                     updateSelectSessionLists();
                 },
                 error: function (xhr) {
@@ -532,6 +537,7 @@
         }
 
         var itemValue = "";
+
         function validateSession(itemValue) {
             if (itemValue == "*") {
                 alert("Please select Session!");
@@ -581,7 +587,7 @@
                                 alert('Session not found!\nRefresh your browser now!');
                                 return false;
                             }
-                            if($('#app_multiview').prop('checked')){
+                            if ($('#app_multiview').prop('checked')) {
                                 $('#mikrostator-section').prepend(data);
                             } else {
                                 $('#mikrostator-section').html(data);
@@ -605,7 +611,6 @@
          * section.end
          * **********************************
          */
-
 
 
         /* 
@@ -639,7 +644,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-server-profile':
@@ -663,7 +668,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-user':
@@ -687,7 +692,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-user-profile':
@@ -711,7 +716,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-active':
@@ -735,7 +740,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-host':
@@ -759,7 +764,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-hotspot-ip-binding':
@@ -783,7 +788,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-system-resource':
@@ -807,7 +812,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-log':
@@ -831,7 +836,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-log-hotspot':
@@ -855,7 +860,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-log-access':
@@ -879,7 +884,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-report-selling':
@@ -903,7 +908,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-ping':
@@ -927,7 +932,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-form-billing':
@@ -951,7 +956,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-form-billing-n-report':
@@ -975,7 +980,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-voucher-list':
@@ -999,7 +1004,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-dns-cache':
@@ -1023,7 +1028,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-dhcp-server-lease':
@@ -1047,7 +1052,7 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
                         });
-                    }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 case 'menu-dashboard':
@@ -1071,13 +1076,41 @@
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(msgError);
                                 $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
                             }
-                        })
+                        });
 
                         if ($('#autorefresh-' + itemValue + '-' + cmd).prop('checked')) {
                             setTimeout(window['freqAjax-' + itemValue + '-' + cmd], $('#autorefresh_interval-' + itemValue + '-' + cmd).val()); // function refers to itself
                         }
-                    }
-                    
+                    };
+
+                    window['freqAjax-' + itemValue + '-' + cmd]();
+                    break;
+
+                case 'menu-interface':
+                    $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(loadingBar);
+                    window['freqAjax-' + itemValue + '-' + cmd] = function () {
+                        window['reqAjax-' + itemValue + '-' + cmd] = $.ajax({
+                            url: "<?= site_url('mt_interface/index') ?>/" + itemValue + "/" + cmd,
+                            success: function (data) {
+                                var d = new Date();
+                                var cdx = d.getDate() + '/' + eval(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(data);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
+                            },
+                            error: function (xhr) {
+                                var d = new Date();
+                                var cdx = d.getDate() + '/' + eval(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                                console.log(xhr);
+                                var msgError = 'Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText;
+                                alert(msgError);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-body').html(msgError);
+                                $('#mikrostator-box-' + itemValue + '-' + cmd + ' .box-tools .updated-at').html('section at: ' + cdx);
+                            }
+                        });
+                        if ($('#autorefresh-' + itemValue + '-' + cmd).prop('checked')) {
+                            setTimeout(window['freqAjax-' + itemValue + '-' + cmd], $('#autorefresh_interval-' + itemValue + '-' + cmd).val()); // function refers to itself
+                        }
+                    };
                     window['freqAjax-' + itemValue + '-' + cmd]();
                     break;
                 default:
@@ -1085,6 +1118,7 @@
             }
 
         }
+
         /* 
          * **********************************
          * application mikrotik.end
@@ -1159,4 +1193,4 @@
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
-</script>
+</script> 
