@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))
  */
 require_once 'routeros_api.class.php';
 
-class Mikrostator Extends routeros_api {
+class Mikrostator Extends RouterosAPI {
 
     private $mikrotik_host = "";
     private $mikrotik_port = "";
